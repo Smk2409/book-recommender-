@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Find Similar Books &mdash; The Reading Room{% endblock %}
+
+{% block content %}
+<section class="hero hero--compact">
+  <p class="eyebrow">Item-based collaborative filtering</p>
+  <h1>Pull the card,<br>see what's filed<br>next to it.</h1>
+  <p class="hero-copy">
+    Type a title you've read. We'll look at everyone else who rated it and
+    surface the five books their taste most often traveled to next.
+  </p>
+</section>
+
+<section class="search-slot">
+  <form action="/recommend_books" method="post" class="search-form">
+    <label for="book_title">Book title</label>
+    <input
+      list="titles"
+      id="book_title"
+      name="book_title"
+      placeholder="e.g. The Hobbit"
+      value="{{ searched or '' }}"
+      autocomplete="off"
+      required>
+    <datalist id="titles">
+      {% for t in titles %}
+      <option value="{{ t }}">
+      {% endfor %}
+    </datalist>
+    <button type="submit" class="btn-primary">Search the catalog</button>
+  </form>
+</section>
+
+{% if not_found %}
+<section class="empty-state">
+  <p><strong>&ldquo;{{ searched }}&rdquo;</strong> isn't in the catalog we can compare against &mdash;
+  it may not have enough reader ratings yet. Try picking a title from the
+  suggestions as you type.</p>
+</section>
+{% endif %}
+
+{% if results %}
+<section class="results-intro">
+  <p>Because you liked <strong>{{ searched }}</strong>:</p>
+</section>
+<section class="catalog-grid catalog-grid--fanned">
+  {% for book in results %}
+  <article class="catalog-card">
+    <span class="catalog-no">No. {{ '%03d' % (loop.index) }}</span>
+    <div class="cover-frame">
+      <img src="{{ book.image_url }}" alt="Cover of {{ book.title }}" loading="lazy">
+      {% if book.average_rating %}
+      <span class="stamp" style="--tilt: {{ (loop.index * 53 % 9) - 4 }}deg">
+        {{ book.average_rating }}<small>&#9733;</small>
+      </span>
+      {% endif %}
+    </div>
+    <h2 class="card-title">{{ book.title }}</h2>
+    <p class="card-author">{{ book.authors }}</p>
+  </article>
+  {% endfor %}
+</section>
+{% endif %}
+{% endblock %}

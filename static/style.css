@@ -1,0 +1,275 @@
+/* ---------------------------------------------------------------------
+   The Reading Room — design tokens
+   Palette: warm ledger paper, deep forest ink, aged brass, oxblood stamp
+--------------------------------------------------------------------- */
+:root {
+  --color-bg: #ece5d4;
+  --color-bg-raised: #faf6ec;
+  --color-ink: #202f1f;
+  --color-ink-soft: #4c5a45;
+  --color-rule: #cabe9f;
+  --color-accent: #a97a25;
+  --color-accent-soft: #e8d9b5;
+  --color-stamp: #6d2b2b;
+
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  background-image:
+    repeating-linear-gradient(0deg, rgba(32,47,31,0.035) 0px, rgba(32,47,31,0.035) 1px, transparent 1px, transparent 34px);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  line-height: 1.5;
+}
+
+a { color: inherit; }
+
+/* ------------------------------------------------------------- header */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem clamp(1.25rem, 4vw, 3.5rem);
+  border-bottom: 2px solid var(--color-ink);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-ink);
+}
+
+.brand-mark { font-size: 1.1rem; color: var(--color-accent); }
+
+.site-nav { display: flex; gap: 2rem; }
+
+.site-nav a {
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--color-ink);
+  border-color: var(--color-accent);
+}
+
+/* --------------------------------------------------------------- hero */
+.hero {
+  padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3.5rem) 2.5rem;
+  max-width: 760px;
+}
+
+.hero--compact { padding-bottom: 1.5rem; }
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 0.75rem;
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1.08;
+  margin: 0 0 1.1rem;
+  color: var(--color-ink);
+}
+
+.hero-copy {
+  font-size: 1.05rem;
+  color: var(--color-ink-soft);
+  max-width: 52ch;
+  margin: 0 0 1.75rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--color-ink);
+  color: var(--color-bg-raised);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  text-decoration: none;
+  padding: 0.85rem 1.4rem;
+  border-radius: 3px;
+  border: 1px solid var(--color-ink);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn-primary:hover { background: var(--color-accent); border-color: var(--color-accent); }
+
+/* ---------------------------------------------------------- search box */
+.search-slot {
+  margin: 0 clamp(1.25rem, 4vw, 3.5rem) 2.5rem;
+  background: var(--color-bg-raised);
+  border: 1.5px dashed var(--color-rule);
+  border-radius: 6px;
+  padding: 1.75rem;
+}
+
+.search-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 1rem;
+}
+
+.search-form label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-bottom: 0.4rem;
+  width: 100%;
+}
+
+.search-form input {
+  flex: 1 1 280px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1.5px solid var(--color-ink);
+  border-radius: 3px;
+  background: #fff;
+  color: var(--color-ink);
+}
+
+.search-form input:focus {
+  outline: 3px solid var(--color-accent-soft);
+  outline-offset: 1px;
+}
+
+.empty-state, .results-intro {
+  margin: 0 clamp(1.25rem, 4vw, 3.5rem) 1.5rem;
+  font-family: var(--font-body);
+  color: var(--color-ink-soft);
+}
+
+.empty-state { color: var(--color-stamp); }
+
+.results-intro p { font-size: 1.1rem; }
+.results-intro strong { font-family: var(--font-display); }
+
+/* -------------------------------------------------------- catalog grid */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.75rem 1.5rem;
+  padding: 0 clamp(1.25rem, 4vw, 3.5rem) 4rem;
+}
+
+.catalog-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.catalog-no {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--color-ink-soft);
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.cover-frame {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  background: var(--color-bg-raised);
+  border: 1px solid var(--color-rule);
+  border-radius: 4px;
+  overflow: visible;
+  box-shadow: 3px 3px 0 rgba(32,47,31,0.08);
+}
+
+.cover-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 3px;
+}
+
+.stamp {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: var(--color-stamp);
+  color: var(--color-accent-soft);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.5rem;
+  border-radius: 2px;
+  transform: rotate(var(--tilt, -4deg));
+  box-shadow: 1px 1px 0 rgba(0,0,0,0.15);
+}
+
+.stamp small { margin-left: 1px; font-size: 0.65em; }
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0.7rem 0 0.2rem;
+  color: var(--color-ink);
+}
+
+.card-author {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+.catalog-grid--fanned .catalog-card:nth-child(odd) { transform: translateY(6px); }
+
+/* --------------------------------------------------------------- footer */
+.site-footer {
+  border-top: 2px solid var(--color-ink);
+  padding: 1.25rem clamp(1.25rem, 4vw, 3.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--color-ink-soft);
+}
+
+/* ------------------------------------------------------------ responsive */
+@media (max-width: 640px) {
+  .site-header { flex-direction: column; align-items: flex-start; gap: 0.75rem; }
+  .site-nav { gap: 1.25rem; }
+  .catalog-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}

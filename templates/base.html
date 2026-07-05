@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}The Reading Room{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="brand">
+      <span class="brand-mark">&#9776;</span>
+      <span class="brand-text">The Reading Room</span>
+    </a>
+    <nav class="site-nav">
+      <a href="/" class="{{ 'active' if active == 'home' else '' }}">Top Picks</a>
+      <a href="/recommend" class="{{ 'active' if active == 'recommend' else '' }}">Find Similar Books</a>
+    </nav>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    <p>The Reading Room &mdash; a book recommendation system built with scikit-learn &amp; Flask, using the goodbooks-10k dataset.</p>
+  </footer>
+</body>
+</html>

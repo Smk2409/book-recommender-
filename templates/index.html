@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Top Picks &mdash; The Reading Room{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">Est. from 6 million reader ratings</p>
+  <h1>Fifty books<br>the room keeps<br>reaching for.</h1>
+  <p class="hero-copy">
+    Ranked by a weighted-rating model, not just star averages &mdash; so a book
+    with three perfect ratings can't outrank one loved by fifty thousand readers.
+  </p>
+  <a href="/recommend" class="btn-primary">Find books like one you already love &rarr;</a>
+</section>
+
+<section class="catalog-grid">
+  {% for book in books %}
+  <article class="catalog-card">
+    <span class="catalog-no">No. {{ '%03d' % (loop.index) }}</span>
+    <div class="cover-frame">
+      <img src="{{ book.image_url }}" alt="Cover of {{ book.title }}" loading="lazy">
+      {% if book.average_rating %}
+      <span class="stamp" style="--tilt: {{ (loop.index * 37 % 9) - 4 }}deg">
+        {{ book.average_rating }}<small>&#9733;</small>
+      </span>
+      {% endif %}
+    </div>
+    <h2 class="card-title">{{ book.title }}</h2>
+    <p class="card-author">{{ book.authors }}</p>
+  </article>
+  {% endfor %}
+</section>
+{% endblock %}
