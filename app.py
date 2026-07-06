@@ -1,16 +1,3 @@
-"""
-Book Recommendation System - Flask app
-----------------------------------------
-Two recommendation strategies, both pre-computed by model_builder.py:
-
-  1. Popularity-based  -> shown on the home page ("/")
-  2. Item-based collaborative filtering -> "/recommend"
-
-Run:
-    python model_builder.py   # once, to (re)generate the pickle files
-    python app.py
-"""
-
 import pickle
 import numpy as np
 from flask import Flask, render_template, request
